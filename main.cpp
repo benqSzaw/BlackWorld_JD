@@ -4,6 +4,9 @@
  *  Maciej Szymkiewicz
  *  Natan Świątkowski
  *
+ * and Mainly Author
+ * Beniamin Szawracki
+ *
  *
  ***********************************/
 
