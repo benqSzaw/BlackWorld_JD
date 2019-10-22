@@ -70,7 +70,6 @@ void Game::load()
 
 void Game::run()
 {
-    heroSetup();
     Hero *mainHero = heroSetup();
     QList<Event> eventList = readEvents();
 }
