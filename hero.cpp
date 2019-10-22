@@ -12,6 +12,6 @@ Hero::Hero(string name, int strenge, int agility, int vitality)
     this->gold = 0;
     this->food = 100;
     this->maxStamina = 100 + (agility * 10);
-    this->stamina = this->maxStamina;
+    this->stamina = this->maxStamina;//test
 
 }
