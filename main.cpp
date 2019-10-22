@@ -4,7 +4,7 @@
  *  Maciej Szymkiewicz
  *  Natan Świątkowski
  *
- * and Mainly Author
+ * and Worst Author
  * Beniamin Szawracki
  *
  *
