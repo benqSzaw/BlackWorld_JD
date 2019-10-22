@@ -2,6 +2,7 @@
  *
  * @Authors
  *  Maciej Szymkiewicz
+ *  Natan Świątkowski
  *
  *
  ***********************************/
