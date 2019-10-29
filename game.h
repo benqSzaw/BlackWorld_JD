@@ -8,7 +8,10 @@
 #include <QFile>
 #include <QList>
 #include <stdlib.h>
+#include <QString>
+
 #include <iostream>
+#include <fstream>
 
 #include <string>
 using namespace std;
@@ -23,7 +26,7 @@ public:
     Game();
     void start();
     void exit();
-    void save();
+    void save(Hero *saveHero);
     void load();
     void run();
     Hero* heroSetup();

@@ -7,24 +7,22 @@ using namespace std;
 
 class Hero
 {
-private:
+public:
     string name;
 
     int hp;
     int maxHp;
 
-    int gold;
-
     int stamina;
     int maxStamina;
 
     int food;
+    int gold;
 
     int strenght;
     int vitality;
     int agility;
 
-public:
     Hero(string name, int strenge, int agility, int vitality );
 
 };

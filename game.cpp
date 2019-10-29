@@ -1,5 +1,6 @@
 #include "game.h"
 
+
 // Returns true if s is a number else false
 bool isNumber(string s)
 {
@@ -58,19 +59,64 @@ void Game::exit()
 
 }
 
-void Game::save()
+void Game::save(Hero *saveHero) // dodac aktualny event Id
 {
+    ofstream outfile ("C:/Users/Adam/Desktop/save.txt");
 
+    outfile <<  saveHero->name << endl <<
+
+                saveHero->hp << endl <<
+                saveHero->maxHp << endl <<
+
+                saveHero->stamina << endl <<
+                saveHero->maxStamina << endl <<
+
+                saveHero->food << endl <<
+                saveHero->gold << endl <<
+
+                saveHero->agility << endl <<
+                saveHero->strenght << endl <<
+                saveHero->vitality << endl
+
+            << endl;
+
+    outfile.close();
 }
 
 void Game::load()
 {
+    QList<Event> loadlist;
+    QString line;
 
+    QFile loadFile("C:/Users/Adam/Desktop/save.txt");
+
+    QTextStream in(&loadFile);
+
+
+    QString nameLoad = in.readLine();
+
+    int hpLoad = in.readLine().toInt();
+    int maxHpLoad = in.readLine().toInt();
+
+    int staminaLoad = in.readLine().toInt();
+    int maxStaminaLoad = in.readLine().toInt();
+
+    int foodLoad = in.readLine().toInt();
+    int goldLoad = in.readLine().toInt();
+
+    int strenghtLoad = in.readLine().toInt();
+    int vitalityLoad = in.readLine().toInt();
+    int agilityLoad = in.readLine().toInt();
+    in.readLine();
+
+    loadFile.close();
+    cout << hpLoad  << endl;
 }
 
 void Game::run()
 {
     Hero *mainHero = heroSetup();
+    save(mainHero);
     QList<Event> eventList = readEvents();
 }
 
@@ -94,9 +140,9 @@ Hero* Game::heroSetup()
         system("cls");
 
         cout << "Distribute 10 skill point\n\n";
-        cout << " 1. Strenght;" << strenght <<
-                "\n 2. Vitality;" << vitality <<
-                "\n 3. Agility:" << agility <<
+        cout << " 1. Strenght: " << strenght <<
+                "\n 2. Vitality: " << vitality <<
+                "\n 3. Agility: " << agility <<
                 "\n\n";
 
         string choice;
