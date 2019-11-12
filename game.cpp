@@ -59,11 +59,13 @@ void Game::exit()
 
 }
 
-void Game::save(Hero *saveHero) // dodac aktualny event Id
+void Game::save(Hero *saveHero) //TODO dodac aktualny event Id
 {
-    ofstream outfile ("C:/Users/Adam/Desktop/save.txt");
+    int filename = 0;
+    ofstream myfile;
+    myfile. open ("C:/Users/Przemek/Desktop/filename.txt");
 
-    outfile <<  saveHero->name << endl <<
+    myfile <<  saveHero->name << endl <<
 
                 saveHero->hp << endl <<
                 saveHero->maxHp << endl <<
@@ -80,37 +82,38 @@ void Game::save(Hero *saveHero) // dodac aktualny event Id
 
             << endl;
 
-    outfile.close();
+    myfile.close();
 }
 
 void Game::load()
 {
-    QList<Event> loadlist;
-    QString line;
+    string line;
+      ifstream myfile ("C:/Users/Przemek/Desktop/filename.txt");
+      if (myfile.is_open())
+      {
+        while ( getline (myfile,line) )
+        {
+          cout << line << '\n';
+        }
+        myfile.close();
+      }
 
-    QFile loadFile("C:/Users/Adam/Desktop/save.txt");
+      else cout << "Unable to open file";
 
-    QTextStream in(&loadFile);
+//    int hpLoad = in.readLine().toInt();
+//    int maxHpLoad = in.readLine().toInt();
+
+//    int staminaLoad = in.readLine().toInt();
+//    int maxStaminaLoad = in.readLine().toInt();
+
+//    int foodLoad = in.readLine().toInt();
+//    int goldLoad = in.readLine().toInt();
+
+//    int strenghtLoad = in.readLine().toInt();
+//    int vitalityLoad = in.readLine().toInt();
+//    int agilityLoad = in.readLine().toInt();
 
 
-    QString nameLoad = in.readLine();
-
-    int hpLoad = in.readLine().toInt();
-    int maxHpLoad = in.readLine().toInt();
-
-    int staminaLoad = in.readLine().toInt();
-    int maxStaminaLoad = in.readLine().toInt();
-
-    int foodLoad = in.readLine().toInt();
-    int goldLoad = in.readLine().toInt();
-
-    int strenghtLoad = in.readLine().toInt();
-    int vitalityLoad = in.readLine().toInt();
-    int agilityLoad = in.readLine().toInt();
-    in.readLine();
-
-    loadFile.close();
-    cout << hpLoad  << endl;
 }
 
 void Game::run()

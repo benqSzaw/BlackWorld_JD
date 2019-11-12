@@ -4,6 +4,8 @@
 #include "hero.h"
 #include "event.h"
 
+
+#include <fstream>
 #include <QTextStream>
 #include <QFile>
 #include <QList>
