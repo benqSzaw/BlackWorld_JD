@@ -23,12 +23,13 @@ class Game
 {
 private:
     bool isStarted;
+    Hero* mainHero;
 
 public:
     Game();
     void start();
     void exit();
-    void save(Hero *saveHero);
+    void save();
     void load();
     void run();
     Hero* heroSetup();

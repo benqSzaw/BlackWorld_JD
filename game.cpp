@@ -34,13 +34,14 @@ void Game::start()
     switch (stoi(choice))
     {
     case 1:
+        mainHero = heroSetup();
         run();
 
         break;
 
     case 2:
         load();
-
+        run();
         break;
 
     case 3:
@@ -59,71 +60,66 @@ void Game::exit()
 
 }
 
-void Game::save(Hero *saveHero) //TODO dodac aktualny event Id
+void Game::save() //TODO dodac aktualny event Id
 {
-    int filename = 0;
     ofstream myfile;
-    myfile. open ("C:/Users/Przemek/Desktop/filename.txt");
+    myfile. open ("save.txt");
 
-    myfile <<  saveHero->name << endl <<
+    myfile <<  mainHero->name << endl <<
 
-                saveHero->hp << endl <<
-                saveHero->maxHp << endl <<
+               mainHero->hp << endl <<
+               mainHero->maxHp << endl <<
 
-                saveHero->stamina << endl <<
-                saveHero->maxStamina << endl <<
+               mainHero->stamina << endl <<
+               mainHero->maxStamina << endl <<
 
-                saveHero->food << endl <<
-                saveHero->gold << endl <<
+               mainHero->food << endl <<
+               mainHero->gold << endl <<
 
-                saveHero->agility << endl <<
-                saveHero->strenght << endl <<
-                saveHero->vitality << endl
+               mainHero->strenght << endl <<
+               mainHero->vitality << endl <<
+               mainHero->agility << endl
 
             << endl;
 
     myfile.close();
 }
 
-void Game::load()
+void Game::load() //TODO dodac aktualny event Id
 {
     string line;
-      ifstream myfile ("C:/Users/Przemek/Desktop/filename.txt");
-      if (myfile.is_open())
-      {
+    ifstream myfile ("save.txt");
+    if (myfile.is_open())
+    {
         while ( getline (myfile,line) )
         {
-          cout << line << '\n';
+            mainHero->name = line ;
+
+            mainHero->hp = atoi(line.c_str());
+            mainHero->maxHp =
+
+            mainHero->stamina = atoi(line.c_str());
+            mainHero->maxStamina = atoi(line.c_str());
+
+            mainHero->food = atoi(line.c_str());
+            mainHero->gold = atoi(line.c_str());
+
+            mainHero->strenght = atoi(line.c_str());
+            mainHero->vitality = atoi(line.c_str());
+            mainHero->agility = atoi(line.c_str());
+
         }
         myfile.close();
-      }
-
-      else cout << "Unable to open file";
-
-//    int hpLoad = in.readLine().toInt();
-//    int maxHpLoad = in.readLine().toInt();
-
-//    int staminaLoad = in.readLine().toInt();
-//    int maxStaminaLoad = in.readLine().toInt();
-
-//    int foodLoad = in.readLine().toInt();
-//    int goldLoad = in.readLine().toInt();
-
-//    int strenghtLoad = in.readLine().toInt();
-//    int vitalityLoad = in.readLine().toInt();
-//    int agilityLoad = in.readLine().toInt();
-
-
+    }
+    else cout << "Unable to open file";
 }
 
 void Game::run()
 {
-    Hero *mainHero = heroSetup();
-    save(mainHero);
     QList<Event> eventList = readEvents();
 }
 
-Hero* Game::heroSetup()
+Hero *Game::heroSetup()
 {
     system("cls");
 
@@ -185,10 +181,10 @@ Hero* Game::heroSetup()
 
 QList<Event> Game::readEvents()
 {
-    QList<Event> eventlist;
+    QList<Event> evenList;
     QString line;
 
-    QFile eventFile("C:/Users/Adam/Desktop/events.txt");
+    QFile eventFile("events.txt");
 
     QTextStream in(&eventFile);
     while(!in.atEnd())
@@ -206,9 +202,9 @@ QList<Event> Game::readEvents()
         e.cons3 = in.readLine();
         in.readLine();
 
-        eventlist.append(e);
+        evenList.append(e);
     }
     eventFile.close();
 
-    return eventlist;
+    return evenList;
 }
