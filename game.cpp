@@ -2,6 +2,7 @@
 #include "event.h"
 #include <QFile>
 
+
 // Returns true if s is a number else false
 bool isNumber(string s)
 {
@@ -45,14 +46,18 @@ void Game::start()
     switch (stoi(choice))
     {
     case 1:
+<<<<<<< HEAD
         currentEventId = 0;
+=======
+        mainHero = heroSetup();
+>>>>>>> 8ebca597328d86a32f94d6bb9051988b6d559365
         run();
 
         break;
 
     case 2:
         load();
-
+        run();
         break;
 
     case 3:
@@ -71,22 +76,69 @@ void Game::exit()
 
 }
 
-void Game::save()
+void Game::save() //TODO dodac aktualny event Id
 {
+    ofstream myfile;
+    myfile. open ("save.txt");
 
+    myfile <<  mainHero->name << endl <<
+
+               mainHero->hp << endl <<
+               mainHero->maxHp << endl <<
+
+               mainHero->stamina << endl <<
+               mainHero->maxStamina << endl <<
+
+               mainHero->food << endl <<
+               mainHero->gold << endl <<
+
+               mainHero->strenght << endl <<
+               mainHero->vitality << endl <<
+               mainHero->agility << endl
+
+            << endl;
+
+    myfile.close();
 }
 
-void Game::load()
+void Game::load() //TODO dodac aktualny event Id
 {
+    string line;
+    ifstream myfile ("save.txt");
+    if (myfile.is_open())
+    {
+        while ( getline (myfile,line) )
+        {
+            mainHero->name = line ;
 
+            mainHero->hp = atoi(line.c_str());
+            mainHero->maxHp =
+
+            mainHero->stamina = atoi(line.c_str());
+            mainHero->maxStamina = atoi(line.c_str());
+
+            mainHero->food = atoi(line.c_str());
+            mainHero->gold = atoi(line.c_str());
+
+            mainHero->strenght = atoi(line.c_str());
+            mainHero->vitality = atoi(line.c_str());
+            mainHero->agility = atoi(line.c_str());
+
+        }
+        myfile.close();
+    }
+    else cout << "Unable to open file";
 }
 
 
 
 void Game::run()
 {
+<<<<<<< HEAD
 
    // Hero *mainHero = heroSetup();
+=======
+>>>>>>> 8ebca597328d86a32f94d6bb9051988b6d559365
     QList<Event> eventList = readEvents();
     char choice;
     int length();
@@ -146,7 +198,7 @@ void Game::run()
     }
 }
 
-Hero* Game::heroSetup()
+Hero *Game::heroSetup()
 {
     system("cls");
 
@@ -166,9 +218,9 @@ Hero* Game::heroSetup()
         system("cls");
 
         cout << "Distribute 10 skill point\n\n";
-        cout << " 1. Strenght;" << strenght <<
-                "\n 2. Vitality;" << vitality <<
-                "\n 3. Agility:" << agility <<
+        cout << " 1. Strenght: " << strenght <<
+                "\n 2. Vitality: " << vitality <<
+                "\n 3. Agility: " << agility <<
                 "\n\n";
 
         string choice;
@@ -208,11 +260,19 @@ Hero* Game::heroSetup()
 
 QList<Event> Game::readEvents()
 {
+<<<<<<< HEAD
     QList<Event> eventlist;
     QFile inputFile("events.txt.txt");
+=======
+    QList<Event> evenList;
+    QString line;
+
+    QFile eventFile("events.txt");
+>>>>>>> 8ebca597328d86a32f94d6bb9051988b6d559365
 
     if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
+<<<<<<< HEAD
 
 
         QTextStream in(&inputFile);
@@ -236,6 +296,22 @@ QList<Event> Game::readEvents()
             eventlist.append(e);
         }
         inputFile.close();
+=======
+        Event e;
+
+        e.id = in.readLine().toInt();
+        e.type = in.readLine().toInt();
+        e.description = in.readLine();
+        e.option1 = in.readLine();
+        e.option2 = in.readLine();
+        e.option3 = in.readLine();
+        e.cons1 = in.readLine();
+        e.cons2 = in.readLine();
+        e.cons3 = in.readLine();
+        in.readLine();
+
+        evenList.append(e);
+>>>>>>> 8ebca597328d86a32f94d6bb9051988b6d559365
     }
 
 
@@ -251,5 +327,5 @@ QList<Event> Game::readEvents()
     //    e.option3 = "3";
     //    eventlist.append(e);
 
-    return eventlist;
+    return evenList;
 }
