@@ -1,4 +1,6 @@
 #include "game.h"
+#include "event.h"
+#include <QFile>
 
 // Returns true if s is a number else false
 bool isNumber(string s)
@@ -8,6 +10,16 @@ bool isNumber(string s)
             return false;
 
     return true;
+}
+
+void Game::showEvent(Event event)
+{
+    cout << event.description.toStdString() << endl;
+    cout <<"1. "<< event.option1.toStdString() << endl;
+    cout <<"2. "<< event.option2.toStdString() << endl;
+    cout <<"3. "<< event.option3.toStdString() << endl;
+
+
 }
 
 Game::Game() : isStarted(false)
@@ -33,6 +45,7 @@ void Game::start()
     switch (stoi(choice))
     {
     case 1:
+        currentEventId = 0;
         run();
 
         break;
@@ -68,11 +81,69 @@ void Game::load()
 
 }
 
+
+
 void Game::run()
 {
-    heroSetup();
-    Hero *mainHero = heroSetup();
+
+   // Hero *mainHero = heroSetup();
     QList<Event> eventList = readEvents();
+    char choice;
+    int length();
+    if(eventList.empty())
+    {
+        cout <<"error occured because of list of events is empty"<<endl;
+        return;
+    }
+    while(currentEventId <= eventList.last().id)   // main game loop
+    {
+        cout <<"Length: "<< eventList.length()<< endl;
+        showEvent(eventList.at(currentEventId));
+        currentEventId++;
+        cin >>choice;
+        switch(choice)
+        {
+        case '1':
+        {
+            //TO DO: Showing 1st consequence
+            break;
+        }
+        case '2':
+        {
+            //TO DO: Showing 2nd consequence
+            break;
+        }
+        case '3':
+        {
+            //TO DO: Showing 3rd consequence
+            break;
+        }
+        case 's':
+        {
+            //TO DO: Saving game
+        }
+        case 'l':
+        {
+            //TO DO: Loading a save
+        }
+        case 'q':
+        {
+            //TO DO: Quiting from a game
+        }
+        case 'o':
+        {
+            //TO DO: Showing options
+        }
+        default:
+        {
+            system("cls");
+            cout<<"wrong choice"<<endl;
+        }
+
+
+        }
+
+    }
 }
 
 Hero* Game::heroSetup()
@@ -138,29 +209,47 @@ Hero* Game::heroSetup()
 QList<Event> Game::readEvents()
 {
     QList<Event> eventlist;
-    QString line;
+    QFile inputFile("events.txt.txt");
 
-    QFile eventFile("C:/Users/Adam/Desktop/events.txt");
-
-    QTextStream in(&eventFile);
-    while(!in.atEnd())
+    if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        Event e;
 
-        e.id = in.readLine().toInt();
-        e.type = in.readLine().toInt();
-        e.description = in.readLine();
-        e.option1 = in.readLine();
-        e.option2 = in.readLine();
-        e.option3 = in.readLine();
-        e.cons1 = in.readLine();
-        e.cons2 = in.readLine();
-        e.cons3 = in.readLine();
-        in.readLine();
 
-        eventlist.append(e);
+        QTextStream in(&inputFile);
+        while (!in.atEnd())
+        {
+
+            Event e;
+
+            e.id = in.readLine().toInt();
+            e.type = in.readLine().toInt();
+            e.description = in.readLine();
+            e.option1 = in.readLine();
+            e.option2 = in.readLine();
+            e.option3 = in.readLine();
+            e.cons1 = in.readLine();
+            e.cons2 = in.readLine();
+            e.cons3 = in.readLine();
+            in.readLine();
+            cout <<"dldl"<<e.id<<endl;
+
+            eventlist.append(e);
+        }
+        inputFile.close();
     }
-    eventFile.close();
+
+
+
+
+
+    //    // for tests only, remove in product code
+    //    Event e;
+    //    e.id = 2;
+    //    e.description = "Blablabla";
+    //    e.option1 = "optin1";
+    //    e.option2 = "option2";
+    //    e.option3 = "3";
+    //    eventlist.append(e);
 
     return eventlist;
 }
