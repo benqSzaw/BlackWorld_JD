@@ -23,13 +23,9 @@ class Game
 {
 private:
     bool isStarted;
-<<<<<<< HEAD
     int currentEventId;
-
-    void showEvent(Event event);
-=======
     Hero* mainHero;
->>>>>>> 8ebca597328d86a32f94d6bb9051988b6d559365
+
 
 public:
     Game();
@@ -40,7 +36,7 @@ public:
     void run();
     Hero* heroSetup();
     QList<Event> readEvents();
-
+    void showEvent(Event event);
 
 };
 

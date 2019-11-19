@@ -46,13 +46,10 @@ void Game::start()
     switch (stoi(choice))
     {
     case 1:
-<<<<<<< HEAD
-        currentEventId = 0;
-=======
-        mainHero = heroSetup();
->>>>>>> 8ebca597328d86a32f94d6bb9051988b6d559365
-        run();
 
+        currentEventId = 0;
+        mainHero = heroSetup();
+        run();
         break;
 
     case 2:
@@ -114,7 +111,7 @@ void Game::load() //TODO dodac aktualny event Id
             mainHero->hp = atoi(line.c_str());
             mainHero->maxHp =
 
-            mainHero->stamina = atoi(line.c_str());
+                    mainHero->stamina = atoi(line.c_str());
             mainHero->maxStamina = atoi(line.c_str());
 
             mainHero->food = atoi(line.c_str());
@@ -134,11 +131,8 @@ void Game::load() //TODO dodac aktualny event Id
 
 void Game::run()
 {
-<<<<<<< HEAD
 
-   // Hero *mainHero = heroSetup();
-=======
->>>>>>> 8ebca597328d86a32f94d6bb9051988b6d559365
+
     QList<Event> eventList = readEvents();
     char choice;
     int length();
@@ -260,25 +254,14 @@ Hero *Game::heroSetup()
 
 QList<Event> Game::readEvents()
 {
-<<<<<<< HEAD
+
     QList<Event> eventlist;
-    QFile inputFile("events.txt.txt");
-=======
-    QList<Event> evenList;
-    QString line;
-
-    QFile eventFile("events.txt");
->>>>>>> 8ebca597328d86a32f94d6bb9051988b6d559365
-
+    QFile inputFile("events.txt");
     if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-<<<<<<< HEAD
-
-
         QTextStream in(&inputFile);
         while (!in.atEnd())
         {
-
             Event e;
 
             e.id = in.readLine().toInt();
@@ -291,27 +274,12 @@ QList<Event> Game::readEvents()
             e.cons2 = in.readLine();
             e.cons3 = in.readLine();
             in.readLine();
-            cout <<"dldl"<<e.id<<endl;
+
 
             eventlist.append(e);
         }
         inputFile.close();
-=======
-        Event e;
 
-        e.id = in.readLine().toInt();
-        e.type = in.readLine().toInt();
-        e.description = in.readLine();
-        e.option1 = in.readLine();
-        e.option2 = in.readLine();
-        e.option3 = in.readLine();
-        e.cons1 = in.readLine();
-        e.cons2 = in.readLine();
-        e.cons3 = in.readLine();
-        in.readLine();
-
-        evenList.append(e);
->>>>>>> 8ebca597328d86a32f94d6bb9051988b6d559365
     }
 
 
@@ -327,5 +295,5 @@ QList<Event> Game::readEvents()
     //    e.option3 = "3";
     //    eventlist.append(e);
 
-    return evenList;
+    return eventlist;
 }
