@@ -34,7 +34,6 @@ void Game::start()
     cout << "2. Load Game \n";
     cout << "3. Exit \n";
     isStarted = true;
-
     string choice;
     cin >> choice;
     if (!isNumber(choice))
@@ -46,7 +45,6 @@ void Game::start()
     switch (stoi(choice))
     {
     case 1:
-
         currentEventId = 0;
         mainHero = heroSetup();
         run();
@@ -59,7 +57,6 @@ void Game::start()
 
     case 3:
         exit();
-
         break;
 
     default:
@@ -135,7 +132,6 @@ void Game::run()
 
     QList<Event> eventList = readEvents();
     char choice;
-    int length();
     if(eventList.empty())
     {
         cout <<"error occured because of list of events is empty"<<endl;
@@ -143,7 +139,6 @@ void Game::run()
     }
     while(currentEventId <= eventList.last().id)   // main game loop
     {
-        cout <<"Length: "<< eventList.length()<< endl;
         showEvent(eventList.at(currentEventId));
         currentEventId++;
         cin >>choice;
@@ -184,6 +179,7 @@ void Game::run()
         {
             system("cls");
             cout<<"wrong choice"<<endl;
+            currentEventId--;
         }
 
 
@@ -281,19 +277,6 @@ QList<Event> Game::readEvents()
         inputFile.close();
 
     }
-
-
-
-
-
-    //    // for tests only, remove in product code
-    //    Event e;
-    //    e.id = 2;
-    //    e.description = "Blablabla";
-    //    e.option1 = "optin1";
-    //    e.option2 = "option2";
-    //    e.option3 = "3";
-    //    eventlist.append(e);
 
     return eventlist;
 }
