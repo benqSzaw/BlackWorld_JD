@@ -51,6 +51,7 @@ void Game::start()
         break;
 
     case 2:
+        mainHero = new Hero;
         load();
         run();
         break;
@@ -70,7 +71,7 @@ void Game::exit()
 
 }
 
-void Game::save() //TODO dodac aktualny event Id
+void Game::save()
 {
     ofstream myfile;
     myfile. open ("save.txt");
@@ -88,40 +89,43 @@ void Game::save() //TODO dodac aktualny event Id
 
                mainHero->strenght << endl <<
                mainHero->vitality << endl <<
-               mainHero->agility << endl
+               mainHero->agility << endl <<
+               currentEventId << endl
 
             << endl;
 
     myfile.close();
 }
 
-void Game::load() //TODO dodac aktualny event Id
+void Game::load()
 {
-    string line;
-    ifstream myfile ("save.txt");
-    if (myfile.is_open())
+    QFile inputFile("save.txt");
+    string name;
+    if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        while ( getline (myfile,line) )
-        {
-            mainHero->name = line ;
+        QTextStream in(&inputFile);
 
-            mainHero->hp = atoi(line.c_str());
-            mainHero->maxHp =
 
-                    mainHero->stamina = atoi(line.c_str());
-            mainHero->maxStamina = atoi(line.c_str());
 
-            mainHero->food = atoi(line.c_str());
-            mainHero->gold = atoi(line.c_str());
 
-            mainHero->strenght = atoi(line.c_str());
-            mainHero->vitality = atoi(line.c_str());
-            mainHero->agility = atoi(line.c_str());
+        mainHero->name = in.readLine().toStdString();
 
-        }
-        myfile.close();
+        mainHero->hp = in.readLine().toInt();
+        mainHero->maxHp = in.readLine().toInt();
+
+        mainHero->stamina = in.readLine().toInt();
+        mainHero->maxStamina = in.readLine().toInt();
+
+        mainHero-> food = in.readLine().toInt();
+        mainHero->gold = in.readLine().toInt();
+
+        mainHero->strenght = in.readLine().toInt();
+        mainHero->vitality = in.readLine().toInt();
+        mainHero->agility = in.readLine().toInt();
+        currentEventId = in.readLine().toInt() -1;
+
+        inputFile.close();
     }
-    else cout << "Unable to open file";
 }
 
 
@@ -137,10 +141,12 @@ void Game::run()
         cout <<"error occured because of list of events is empty"<<endl;
         return;
     }
+
     while(currentEventId <= eventList.last().id)   // main game loop
     {
         showEvent(eventList.at(currentEventId));
         currentEventId++;
+
         cin >>choice;
         switch(choice)
         {
@@ -161,7 +167,7 @@ void Game::run()
         }
         case 's':
         {
-            //TO DO: Saving game
+            save(); //TO DO: Saving game
         }
         case 'l':
         {

@@ -1,5 +1,10 @@
 #include "hero.h"
 
+Hero::Hero()
+{
+
+}
+
 Hero::Hero(string name, int strenge, int agility, int vitality)
 {
     this->name = name;

@@ -23,6 +23,7 @@ public:
     int vitality;
     int agility;
 
+    Hero();
     Hero(string name, int strenge, int agility, int vitality );
 
 };
