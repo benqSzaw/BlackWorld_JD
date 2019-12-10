@@ -1,6 +1,6 @@
 #include "game.h"
 #include "event.h"
-#include <QFile>
+
 
 
 // Returns true if s is a number else false
@@ -53,6 +53,7 @@ void Game::start()
     case 2:
         mainHero = new Hero;
         load();
+        system("cls");
         run();
         break;
 
@@ -147,6 +148,8 @@ void Game::run()
         showEvent(eventList.at(currentEventId));
         currentEventId++;
 
+        options();
+
         cin >>choice;
         switch(choice)
         {
@@ -192,6 +195,39 @@ void Game::run()
         }
 
     }
+}
+COORD GetConsoleCursorPosition(HANDLE hConsoleOutput)
+{
+    CONSOLE_SCREEN_BUFFER_INFO cbsi;
+    if (GetConsoleScreenBufferInfo(hConsoleOutput, &cbsi))
+    {
+        return cbsi.dwCursorPosition;
+    }
+    else
+    {
+        // The function failed. Call GetLastError() for details.
+        COORD invalid = { 0, 0 };
+        return invalid;
+    }
+
+}
+
+void Game::options()
+{
+    COORD lol = GetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE));
+
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    int rows;
+
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+
+    COORD coord;
+    coord.X = 0;
+    coord.Y = rows -1;
+    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), coord);
+    cout << "Esc to show options";
+    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), lol);
 }
 
 Hero *Game::heroSetup()

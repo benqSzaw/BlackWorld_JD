@@ -4,16 +4,20 @@
 #include "hero.h"
 #include "event.h"
 
+#include <windows.h>
+#include <stdlib.h>
 
-#include <fstream>
 #include <QTextStream>
 #include <QFile>
 #include <QList>
-#include <stdlib.h>
 #include <QString>
+#include <QFile>
 
+#include <fstream>
 #include <iostream>
 #include <fstream>
+
+#include <cstdio>
 
 #include <string>
 using namespace std;
@@ -34,6 +38,7 @@ public:
     void save();
     void load();
     void run();
+    void options();
     Hero* heroSetup();
     QList<Event> readEvents();
     void showEvent(Event event);
