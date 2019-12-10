@@ -58,8 +58,8 @@ void Game::start()
         break;
 
     case 3:
-        exit();
-        break;
+        system("cls");
+        exit (EXIT_FAILURE);
 
     default:
         system("cls");
@@ -67,11 +67,26 @@ void Game::start()
     }
 }
 
-void Game::exit()
+int Game::exitProgramm()
 {
+    system("cls");
+    cout << "Do you want save game?" << endl
+         << "1. Yes" << endl
+         << "2. No" << endl
+         << endl;
+    char sw;
+    cin >>sw;
+    if(sw == '1')
+    {
+        save();
+        exit (EXIT_FAILURE);
+    }
+    else
+    {
+        exit (EXIT_FAILURE);
+    }
 
 }
-
 void Game::save()
 {
     ofstream myfile;
@@ -145,10 +160,10 @@ void Game::run()
 
     while(currentEventId <= eventList.last().id)   // main game loop
     {
+        system("cls");
         showEvent(eventList.at(currentEventId));
         currentEventId++;
-
-        options();
+        bottomText();
 
         cin >>choice;
         switch(choice)
@@ -168,29 +183,17 @@ void Game::run()
             //TO DO: Showing 3rd consequence
             break;
         }
-        case 's':
+        case 'e':
         {
-            save(); //TO DO: Saving game
-        }
-        case 'l':
-        {
-            //TO DO: Loading a save
-        }
-        case 'q':
-        {
-            //TO DO: Quiting from a game
-        }
-        case 'o':
-        {
+            options();
+            break;
             //TO DO: Showing options
         }
         default:
         {
             system("cls");
-            cout<<"wrong choice"<<endl;
             currentEventId--;
         }
-
 
         }
 
@@ -212,7 +215,7 @@ COORD GetConsoleCursorPosition(HANDLE hConsoleOutput)
 
 }
 
-void Game::options()
+void Game::bottomText()
 {
     COORD lol = GetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE));
 
@@ -226,7 +229,7 @@ void Game::options()
     coord.X = 0;
     coord.Y = rows -1;
     SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), coord);
-    cout << "Esc to show options";
+    cout << " 'E' to show options";
     SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), lol);
 }
 
@@ -287,8 +290,53 @@ Hero *Game::heroSetup()
 
     Hero *mainHero = new Hero(nameHero, strenght, agility, vitality);
 
+    cout << "Press any key to start your adventure";
+    getch();
     return mainHero;
 }
+
+void Game::options()
+{
+    currentEventId--;
+    system("cls");
+    cout << "1. Resume" << endl
+         << "2. Load" << endl
+         << "3. Save" << endl
+         << "4. Exit" << endl;
+
+    char sw;
+    cin >>sw;
+    switch(sw)
+    {
+    case '1' :
+    {
+        run();
+        break;
+    }
+    case '2' :
+    {
+        load();
+        break;
+    }
+    case '3' :
+    {
+        save();
+        break;
+    }
+    case '4' :
+    {
+        exitProgramm();
+        break;
+    }
+    default:
+    {
+        system("cls");
+        options();
+        break;
+    }
+    }
+}
+
 
 QList<Event> Game::readEvents()
 {
