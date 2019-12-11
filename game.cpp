@@ -1,5 +1,5 @@
 #include "game.h"
-#include "event.h"
+
 
 
 
@@ -187,11 +187,9 @@ void Game::run()
         {
             options();
             break;
-            //TO DO: Showing options
         }
         default:
         {
-            system("cls");
             currentEventId--;
         }
 
@@ -330,7 +328,6 @@ void Game::options()
     }
     default:
     {
-        system("cls");
         options();
         break;
     }
