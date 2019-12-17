@@ -4,9 +4,6 @@
 #include "hero.h"
 #include "event.h"
 
-#include <windows.h>
-#include <stdlib.h>
-
 #include <QTextStream>
 #include <QFile>
 #include <QList>
@@ -18,6 +15,11 @@
 #include <fstream>
 
 #include <cstdio>
+
+#include <stdlib.h>
+#include <conio.h>
+#include <windows.h>
+#include <stdlib.h>
 
 #include <string>
 using namespace std;
@@ -34,10 +36,11 @@ private:
 public:
     Game();
     void start();
-    void exit();
+    int exitProgramm();
     void save();
     void load();
     void run();
+    void bottomText();
     void options();
     Hero* heroSetup();
     QList<Event> readEvents();
