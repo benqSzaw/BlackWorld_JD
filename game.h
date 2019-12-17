@@ -32,20 +32,21 @@ private:
     int currentEventId;
     Hero* mainHero;
 
-
 public:
     Game();
+
     void start();
-    int exitProgramm();
     void save();
     void load();
     void run();
-    void bottomText();
+    void showStats();
     void options();
+    void exitProgramm();
+    void bottomText();
+
     Hero* heroSetup();
     QList<Event> readEvents();
     void showEvent(Event event);
-
 };
 
 #endif // GAME_H

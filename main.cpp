@@ -1,14 +1,17 @@
-/***********************************
- *
- * @Authors
- *  Maciej Szymkiewicz
- *  Natan Świątkowski
- *
- * and Worst Author
- * Beniamin Szawracki
- *
- *
- ***********************************/
+/*
+ ***********************************
+ *                                 *
+ * @Authors:                       *
+ *  Beniamin Szawracki             *
+ *  Maciej Szymkiewicz             *
+ *  Natan Świątkowski              *
+ *                                 *
+ *                                 *
+ *                                 *
+ *                                 *
+ *                                 *
+ ***********************************
+*/
 
 #include <QCoreApplication>
 #include "game.h"
@@ -17,6 +20,5 @@
 int main()
 {
     Game game;
-
     game.start();
 }
