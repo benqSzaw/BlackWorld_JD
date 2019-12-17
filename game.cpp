@@ -30,7 +30,6 @@ Game::Game() : isStarted(false)
 
 void Game::start()
 {
-    system("echo off");
     cout << "1. New Game \n";
     cout << "2. Load Game \n";
     cout << "3. Exit \n";
