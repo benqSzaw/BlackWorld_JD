@@ -214,7 +214,7 @@ COORD GetConsoleCursorPosition(HANDLE hConsoleOutput)
 
 void Game::options()
 {
-    COORD lol = GetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE));
+    COORD currentCORD = GetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE));
 
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     int rows;
@@ -225,9 +225,12 @@ void Game::options()
     COORD coord;
     coord.X = 0;
     coord.Y = rows -1;
+
     SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), coord);
+
     cout << "Esc to show options";
-    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), lol);
+
+    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), currentCORD);
 }
 
 Hero *Game::heroSetup()
