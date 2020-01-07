@@ -1,0 +1,16 @@
+1
+1
+Podczas twojej wedrowki kanalami napotykasz na swojej drodze tajemniczego szczura. Co robisz?
+ Uciekasz
+ Atakujesz go
+ Zawierasz z nim sekretny sojusz
+stamina:-5
+hp:-10;gold:+5
+gold:+15;food:-5
+2
+2
+Czeka cie teraz dluga podroz. Musisz wybrac srodek transportu.
+ Idziesz na piechote
+ Wynajmujesz konia
+stamina:-10;vitality:+10
+gold:-10;stamina:+2;vitality:-2
