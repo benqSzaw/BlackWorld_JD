@@ -2,6 +2,7 @@ QT -= gui
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
+win32: LIBS += -luser32
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -17,7 +18,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     game.cpp \
-    interface.cpp \
     hero.cpp \
     event.cpp
 
@@ -28,6 +28,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     game.h \
-    interface.h \
     hero.h \
     event.h
