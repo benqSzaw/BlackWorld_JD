@@ -31,6 +31,8 @@ private:
     bool isStarted;
     int currentEventId;
     Hero* mainHero;
+    void executeEvent(QString cons);
+    void changeHeroStats(QString attr , QString value);
 
 public:
     Game();
