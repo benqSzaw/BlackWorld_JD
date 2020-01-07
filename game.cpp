@@ -1,6 +1,9 @@
 #include "game.h"
 #include "event.h"
 #include <QFile>
+#include <iostream>
+
+using namespace std;
 
 
 // Returns true if s is a number else false
@@ -21,6 +24,58 @@ void Game::showEvent(Event event)
     cout <<"3. "<< event.option3.toStdString() << endl;
 
 
+}
+
+void Game::executeEvent(QString cons)
+{
+    QStringList list1 = cons.split(";");
+    for(int i=0;i<list1.length();i++)
+    {
+        QStringList list2 = list1.at(i).split(":");
+        QString attr = list2.at(0);
+        QString value = list2.at(1);
+        if(attr == "nextE")
+        {
+            Event e;
+
+        }
+        else
+        {
+            changeHeroStats(attr , value);
+        }
+    }
+}
+
+void Game::changeHeroStats(QString attr , QString value)
+{
+    if(attr == "hp")
+    {
+        mainHero->hp += value.toInt();
+    }
+    else if(attr == "stamina")
+    {
+        mainHero->stamina += value.toInt();
+    }
+    else if(attr == "food")
+    {
+        mainHero->food += value.toInt();
+    }
+    else if(attr == "gold")
+    {
+        mainHero->gold += value.toInt();
+    }
+    else if(attr == "strenght")
+    {
+        mainHero->strenght += value.toInt();
+    }
+    else if(attr == "vitality")
+    {
+        mainHero->vitality += value.toInt();
+    }
+    else if(attr == "agility")
+    {
+        mainHero->agility += value.toInt();
+    }
 }
 
 Game::Game() : isStarted(false)
@@ -139,24 +194,35 @@ void Game::run()
     }
     while(currentEventId <= eventList.last().id)   // main game loop
     {
-        showEvent(eventList.at(currentEventId));
-        currentEventId++;
+        Event currentEvent = eventList.at(currentEventId);
+        showEvent(currentEvent);
+        cout <<endl<<"Strenght: "<<mainHero->strenght<<endl
+            <<"Vitality: "<<mainHero->vitality<<endl
+           <<"Agility: "<<mainHero->agility<<endl
+          <<"HP: "<<mainHero->hp<<"/"<<mainHero->maxHp<<endl
+         <<"Stamina: "<<mainHero->stamina<<"/"<<mainHero->maxStamina<<endl
+        <<"Gold: "<<mainHero->gold<<endl
+        <<"Food: "<<mainHero->food<<endl;
+
         cin >>choice;
         switch(choice)
         {
         case '1':
         {
             //TO DO: Showing 1st consequence
+            executeEvent(currentEvent.cons1);
             break;
         }
         case '2':
         {
             //TO DO: Showing 2nd consequence
+            executeEvent(currentEvent.cons2);
             break;
         }
         case '3':
         {
             //TO DO: Showing 3rd consequence
+            executeEvent(currentEvent.cons3);
             break;
         }
         case 's':
@@ -181,9 +247,8 @@ void Game::run()
             cout<<"wrong choice"<<endl;
             currentEventId--;
         }
-
-
         }
+
 
     }
 }
