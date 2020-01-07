@@ -1,14 +1,10 @@
 #include "game.h"
-<<<<<<< HEAD
 #include "event.h"
 #include <QFile>
 #include <iostream>
 
 using namespace std;
-=======
 
-
->>>>>>> 8e77de78f930144a058eb3d988e58892db3379a3
 
 
 // Returns true if s is a number else false
@@ -41,8 +37,7 @@ void Game::executeEvent(QString cons)
         QString value = list2.at(1);
         if(attr == "nextE")
         {
-            Event e;
-
+            currentEventId = value.toInt();
         }
         else
         {
@@ -265,7 +260,6 @@ void Game::run()
 
     while(currentEventId <= eventList.last().id)   // main game loop
     {
-<<<<<<< HEAD
         Event currentEvent = eventList.at(currentEventId);
         showEvent(currentEvent);
         cout <<endl<<"Strenght: "<<mainHero->strenght<<endl
@@ -275,11 +269,9 @@ void Game::run()
          <<"Stamina: "<<mainHero->stamina<<"/"<<mainHero->maxStamina<<endl
         <<"Gold: "<<mainHero->gold<<endl
         <<"Food: "<<mainHero->food<<endl;
-=======
         system("cls");
         showEvent(eventList.at(currentEventId));
         bottomText();
->>>>>>> 8e77de78f930144a058eb3d988e58892db3379a3
 
         cin >>choice;
         switch(choice)
@@ -287,31 +279,21 @@ void Game::run()
         case '1':
         {
             //TO DO: Showing 1st consequence
-<<<<<<< HEAD
             executeEvent(currentEvent.cons1);
-=======
-            currentEventId++;
->>>>>>> 8e77de78f930144a058eb3d988e58892db3379a3
+
             break;
         }
         case '2':
         {
             //TO DO: Showing 2nd consequence
-<<<<<<< HEAD
             executeEvent(currentEvent.cons2);
-=======
-            currentEventId++;
->>>>>>> 8e77de78f930144a058eb3d988e58892db3379a3
+
             break;
         }
         case '3':
         {
             //TO DO: Showing 3rd consequence
-<<<<<<< HEAD
             executeEvent(currentEvent.cons3);
-=======
-            currentEventId++;
->>>>>>> 8e77de78f930144a058eb3d988e58892db3379a3
             break;
         }
         case 'e':
@@ -329,13 +311,13 @@ void Game::run()
             break;
         }
         }
-<<<<<<< HEAD
+
 
 
     }
-=======
+
     }
-}
+
 COORD GetConsoleCursorPosition(HANDLE hConsoleOutput)
 {
     CONSOLE_SCREEN_BUFFER_INFO cbsi;
@@ -372,7 +354,7 @@ void Game::bottomText()
 
     SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), currentCORD);
 
->>>>>>> 8e77de78f930144a058eb3d988e58892db3379a3
+
 }
 
 Hero *Game::heroSetup()
