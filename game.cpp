@@ -37,7 +37,8 @@ void Game::executeEvent(QString cons)
         QString value = list2.at(1);
         if(attr == "nextE")
         {
-            currentEventId = value.toInt();
+            currentEventId = value.toInt() -1;
+            cout<<"dfdsfsdfdsvcxvxdffgewdgs"<<value.toInt()<<endl;
         }
         else
         {
@@ -251,6 +252,7 @@ void Game::run()
 
 
     QList<Event> eventList = readEvents();
+    cout<<"wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"<<eventList.size()<<endl;
     char choice;
     if(eventList.empty())
     {
@@ -258,19 +260,19 @@ void Game::run()
         return;
     }
 
-    while(currentEventId <= eventList.last().id)   // main game loop
+    while(currentEventId < eventList.size())   // main game loop
     {
         Event currentEvent = eventList.at(currentEventId);
         showEvent(currentEvent);
-        cout <<endl<<"Strenght: "<<mainHero->strenght<<endl
-            <<"Vitality: "<<mainHero->vitality<<endl
-           <<"Agility: "<<mainHero->agility<<endl
-          <<"HP: "<<mainHero->hp<<"/"<<mainHero->maxHp<<endl
-         <<"Stamina: "<<mainHero->stamina<<"/"<<mainHero->maxStamina<<endl
-        <<"Gold: "<<mainHero->gold<<endl
-        <<"Food: "<<mainHero->food<<endl;
-        system("cls");
-        showEvent(eventList.at(currentEventId));
+//        cout <<endl<<"Strenght: "<<mainHero->strenght<<endl
+//            <<"Vitality: "<<mainHero->vitality<<endl
+//           <<"Agility: "<<mainHero->agility<<endl
+//          <<"HP: "<<mainHero->hp<<"/"<<mainHero->maxHp<<endl
+//         <<"Stamina: "<<mainHero->stamina<<"/"<<mainHero->maxStamina<<endl
+//        <<"Gold: "<<mainHero->gold<<endl
+//        <<"Food: "<<mainHero->food<<endl;
+//        system("cls");
+
         bottomText();
 
         cin >>choice;
