@@ -46,9 +46,13 @@ public:
     void exitProgramm();
     void bottomText();
 
+    void settings();
+    void changeScreenResolution(int choosenResolution);
+    void changeFontScale(int choosenFontScale);
     Hero* heroSetup();
     QList<Event> readEvents();
     void showEvent(Event event);
+
 };
 
 #endif // GAME_H
