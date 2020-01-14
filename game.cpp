@@ -82,8 +82,66 @@ Game::Game() : isStarted(false)
 
 }
 
+void Game::whenHeraDead()
+{
+    isHeroDead = (mainHero->hp > 0);
+
+    if(isHeroDead == 0)
+    {
+        system("cls");
+        cout << " YOU DIED";
+        Sleep(5000);
+        system("cls");
+        cout << "1. New Game" << endl
+             << "2. Load" << endl
+             << "3. Quit" << endl;
+
+        char sw;
+        cin >>sw;
+        switch(sw)
+        {
+        case '1' :
+        {
+            currentEventId = 0;
+            mainHero = heroSetup();
+            run();
+            break;
+        }
+        case '2' :
+        {
+            load();
+            break;
+        }
+        case '3' :
+        {
+            exitProgramm();
+            break;
+        }
+        default :
+        {
+            system("cls");
+            whenHeraDead();
+            break;
+        }
+        }
+    }
+}
+
 void Game::start()
 {
+    cout <<
+            " _   _   _   _+       |                                 " << endl <<
+            "/_`-'_`-'_`-'_|  \\+/  |                       /-|      " << endl <<
+            "\\_`M'_`D'_`C'_| _<=>_ |                     ___  \\    " << endl <<
+            "  `-' `-' `-' 0/ \\ / o=o     ______________|  /|--]    " << endl <<
+            "              \\/\\ ^ /`0                    | / |__|   " << endl <<
+            "              | /_^_\\                       \\ /.\\ |  " << endl <<
+            "              | || ||                        '|| ||     " << endl <<
+            "            __|_d|_|b__                      <_'<_'     " << endl;
+
+    cout << endl << endl<< "Press any key to start...";
+    _getch();
+    system("cls");
     cout << "1. New Game \n";
     cout << "2. Load Game \n";
     cout << "3. Exit \n";
@@ -261,6 +319,7 @@ void Game::run()
         Event currentEvent = eventList.at(currentEventId);
         showEvent(eventList.at(currentEventId));
         bottomText();
+        whenHeraDead();
         cin >>choice;
         switch(choice)
         {

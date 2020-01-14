@@ -29,6 +29,7 @@ class Game
 {
 private:
     bool isStarted;
+
     int currentEventId;
     Hero* mainHero;
     void executeEvent(QString cons);
@@ -36,7 +37,9 @@ private:
 
 public:
     Game();
+    bool isHeroDead;
 
+    void whenHeraDead();
     void start();
     void save();
     void load();
