@@ -7,8 +7,19 @@
 #include <QTextStream>
 #include <QFile>
 #include <QList>
-#include <stdlib.h>
+#include <QString>
+#include <QFile>
+
+#include <fstream>
 #include <iostream>
+#include <fstream>
+
+#include <cstdio>
+
+#include <stdlib.h>
+#include <conio.h>
+#include <windows.h>
+#include <stdlib.h>
 
 #include <string>
 using namespace std;
@@ -18,20 +29,29 @@ class Game
 {
 private:
     bool isStarted;
+    int currentEventId;
+    Hero* mainHero;
+    void executeEvent(QString cons);
+    void changeHeroStats(QString attr , QString value);
 
 public:
     Game();
+
     void start();
     void save();
     void load();
     void run();
-    void quit();
+    void showStats();
+    void options();
+    void exitProgramm();
+    void bottomText();
+
     void settings();
     void changeScreenResolution(int choosenResolution);
     void changeFontScale(int choosenFontScale);
     Hero* heroSetup();
     QList<Event> readEvents();
-
+    void showEvent(Event event);
 
 };
 

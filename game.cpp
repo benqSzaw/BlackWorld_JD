@@ -1,6 +1,13 @@
 #include "game.h"
+#include "event.h"
+#include <QFile>
+#include <iostream>
+
 #include <cstdlib>
 #include <windows.h>
+using namespace std;
+
+
 // Returns true if s is a number else false
 bool isNumber(string s)
 {
@@ -9,6 +16,67 @@ bool isNumber(string s)
             return false;
 
     return true;
+}
+
+void Game::showEvent(Event event)
+{
+    cout << event.description.toStdString() << endl;
+    cout <<"1. "<< event.option1.toStdString() << endl;
+    cout <<"2. "<< event.option2.toStdString() << endl;
+    cout <<"3. "<< event.option3.toStdString() << endl;
+
+
+}
+
+void Game::executeEvent(QString cons)
+{
+    QStringList list1 = cons.split(";");
+    for(int i=0;i<list1.length();i++)
+    {
+        QStringList list2 = list1.at(i).split(":");
+        QString attr = list2.at(0);
+        QString value = list2.at(1);
+        if(attr == "nextE")
+        {
+            Event e;
+        }
+        else
+        {
+            changeHeroStats(attr , value);
+        }
+    }
+}
+
+void Game::changeHeroStats(QString attr , QString value)
+{
+    if(attr == "hp")
+    {
+        mainHero->hp += value.toInt();
+    }
+    else if(attr == "stamina")
+    {
+        mainHero->stamina += value.toInt();
+    }
+    else if(attr == "food")
+    {
+        mainHero->food += value.toInt();
+    }
+    else if(attr == "gold")
+    {
+        mainHero->gold += value.toInt();
+    }
+    else if(attr == "strenght")
+    {
+        mainHero->strenght += value.toInt();
+    }
+    else if(attr == "vitality")
+    {
+        mainHero->vitality += value.toInt();
+    }
+    else if(attr == "agility")
+    {
+        mainHero->agility += value.toInt();
+    }
 }
 
 Game::Game() : isStarted(false)
@@ -22,7 +90,6 @@ void Game::start()
     cout << "2. Load Game \n";
     cout << "3. Exit \n";
     isStarted = true;
-
     string choice;
     cin >> choice;
     if (!isNumber(choice))
@@ -34,17 +101,21 @@ void Game::start()
     switch (stoi(choice))
     {
     case 1:
+        currentEventId = 0;
+        mainHero = heroSetup();
         run();
-
         break;
 
     case 2:
+        mainHero = new Hero;
         load();
-
+        system("cls");
+        run();
         break;
 
     case 3:
-        quit();
+        system("cls");
+        exit (EXIT_FAILURE);
 
         break;
     case 4:
@@ -55,38 +126,230 @@ void Game::start()
         start();
     }
 }
+void Game::showStats()
+{
+    system("cls");
+    cout << "Name:  " <<   mainHero->name
+         << endl << endl
+
+         << "Hp:  " <<  mainHero->hp << " / " << mainHero->maxHp
+         << endl << endl
+
+         << "Stamina:  " << mainHero->stamina << " / " << mainHero->maxStamina
+         << endl << endl
+
+         << "Strenght:  " << mainHero->strenght
+         << endl
+         << "Vitality:  " <<   mainHero->vitality
+         << endl
+         << "Agility:  " <<   mainHero->agility
+         << endl << endl
+
+         << "Food:  " <<   mainHero->food
+         << endl
+         << "Gold:  " <<   mainHero->gold
+         << endl << endl
+
+         << "1.Back to game" << endl;
+
+    char a;
+    cin >> a;
+    switch (a)
+    {
+    case '1':
+    {
+        run();
+        break;
+    }
+    default:
+    {
+        showStats();
+        break;
+    }
+    }
+}
+
+
+void Game::exitProgramm()
+{
+    system("cls");
+    cout << "Do you want save game?" << endl
+         << "1. Yes" << endl
+         << "2. No" << endl
+         << endl;
+    char sw;
+    cin >>sw;
+    if(sw == '1')
+    {
+        save();
+        system("cls");
+        exit (EXIT_FAILURE);
+    }
+    else if(sw == '2')
+    {
+        system("cls");
+        exit (EXIT_FAILURE);
+    }
+    else
+    {
+        exitProgramm();
+    }
+}
 
 void Game::save()
 {
+    ofstream myfile;
+    myfile. open ("save.txt");
 
+    myfile <<  mainHero->name << endl <<
+
+               mainHero->hp << endl <<
+               mainHero->maxHp << endl <<
+
+               mainHero->stamina << endl <<
+               mainHero->maxStamina << endl <<
+
+               mainHero->food << endl <<
+               mainHero->gold << endl <<
+
+               mainHero->strenght << endl <<
+               mainHero->vitality << endl <<
+               mainHero->agility << endl <<
+               currentEventId << endl
+
+            << endl;
+
+    myfile.close();
 }
 
 void Game::load()
 {
-
-}
-
-void Game::run()
-{
-
-    Hero *mainHero = heroSetup();
-    QList<Event> eventList = readEvents();
-    while (true)
+    QFile inputFile("save.txt");
+    string name;
+    if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
+        QTextStream in(&inputFile);
 
-        quit();
+        mainHero->name = in.readLine().toStdString();
+
+        mainHero->hp = in.readLine().toInt();
+        mainHero->maxHp = in.readLine().toInt();
+
+        mainHero->stamina = in.readLine().toInt();
+        mainHero->maxStamina = in.readLine().toInt();
+
+        mainHero-> food = in.readLine().toInt();
+        mainHero->gold = in.readLine().toInt();
+
+        mainHero->strenght = in.readLine().toInt();
+        mainHero->vitality = in.readLine().toInt();
+        mainHero->agility = in.readLine().toInt();
+        currentEventId = in.readLine().toInt();
+
+        inputFile.close();
     }
 }
 
-void Game::quit()
+
+
+void Game::run()
 {
-    cout<<"would you like to save the game?.1-YES,2-NO";
+    Hero *mainHero = heroSetup();
 
+    QList<Event> eventList = readEvents();
+    char choice;
+    if(eventList.empty())
+    {
+        cout <<"error occured because of list of events is empty"<<endl;
+        return;
+    }
 
-    exit(0);
+    while(currentEventId <= eventList.last().id)   // main game loop
+    {
+        system("cls");
+        Event currentEvent = eventList.at(currentEventId);
+        showEvent(eventList.at(currentEventId));
+        bottomText();
+        cin >>choice;
+        switch(choice)
+        {
+        case '1':
+        {
+            //TO DO: Showing 1st consequence
+            executeEvent(currentEvent.cons1);
+            currentEventId++;
+            break;
+        }
+        case '2':
+        {
+            //TO DO: Showing 2nd consequence
+            executeEvent(currentEvent.cons2);
+            currentEventId++;
+            break;
+        }
+        case '3':
+        {
+            //TO DO: Showing 3rd consequence
+            executeEvent(currentEvent.cons3);
+            currentEventId++;
+            break;
+        }
+        case 'e':
+        {
+            options();
+            break;
+        }
+        case 's':
+        {
+            showStats();
+            break;
+        }
+        default:
+        {
+            break;
+        }
+        }
+    }
 }
 
-Hero* Game::heroSetup()
+COORD GetConsoleCursorPosition(HANDLE hConsoleOutput)
+{
+    CONSOLE_SCREEN_BUFFER_INFO cbsi;
+    if (GetConsoleScreenBufferInfo(hConsoleOutput, &cbsi))
+    {
+        return cbsi.dwCursorPosition;
+    }
+    else
+    {
+        // The function failed. Call GetLastError() for details.
+        COORD invalid = { 0, 0 };
+        return invalid;
+    }
+
+}
+
+void Game::bottomText()
+{
+    COORD currentCORD = GetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE));
+
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    int rows;
+
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+
+    COORD coord;
+    coord.X = 0;
+    coord.Y = rows - 1;
+
+    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), coord);
+
+    cout << "[E]scape  [S]tats";
+
+    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), currentCORD);
+}
+
+Hero *Game::heroSetup()
 {
     system("cls");
 
@@ -106,9 +369,9 @@ Hero* Game::heroSetup()
         system("cls");
 
         cout << "Distribute 10 skill point\n\n";
-        cout << " 1. Strenght;" << strenght <<
-                "\n 2. Vitality;" << vitality <<
-                "\n 3. Agility:" << agility <<
+        cout << " 1. Strenght: " << strenght <<
+                "\n 2. Vitality: " << vitality <<
+                "\n 3. Agility: " << agility <<
                 "\n\n";
 
         string choice;
@@ -143,6 +406,8 @@ Hero* Game::heroSetup()
 
     Hero *mainHero = new Hero(nameHero, strenght, agility, vitality);
 
+    cout << "Press any key to start your adventure";
+    _getch();
     return mainHero;
 }
 void Game:: settings()
@@ -150,6 +415,47 @@ void Game:: settings()
     bool number1=true;
     while(number1)
     {
+
+void Game::options()
+{
+    system("cls");
+    cout << "1. Resume" << endl
+         << "2. Load" << endl
+         << "3. Save" << endl
+         << "4. Exit" << endl;
+
+    char sw;
+    cin >>sw;
+    switch(sw)
+    {
+    case '1' :
+    {
+        run();
+        break;
+    }
+    case '2' :
+    {
+        load();
+        break;
+    }
+    case '3' :
+    {
+        save();
+        break;
+    }
+    case '4' :
+    {
+        exitProgramm();
+        break;
+    }
+    default:
+    {
+        options();
+        break;
+    }
+    }
+}
+
 
         HWND console = GetConsoleWindow();
         RECT r;
@@ -350,29 +656,28 @@ void Game::changeFontScale(int choosenFontScale)
 QList<Event> Game::readEvents()
 {
     QList<Event> eventlist;
-    QString line;
-
-    QFile eventFile("C:/Users/Adam/Desktop/events.txt");
-
-    QTextStream in(&eventFile);
-    while(!in.atEnd())
+    QFile inputFile("events.txt");
+    if (inputFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        Event e;
+        QTextStream in(&inputFile);
+        while (!in.atEnd())
+        {
+            Event e;
 
-        e.id = in.readLine().toInt();
-        e.type = in.readLine().toInt();
-        e.description = in.readLine();
-        e.option1 = in.readLine();
-        e.option2 = in.readLine();
-        e.option3 = in.readLine();
-        e.cons1 = in.readLine();
-        e.cons2 = in.readLine();
-        e.cons3 = in.readLine();
-        in.readLine();
+            e.id = in.readLine().toInt();
+            e.type = in.readLine().toInt();
+            e.description = in.readLine();
+            e.option1 = in.readLine();
+            e.option2 = in.readLine();
+            e.option3 = in.readLine();
+            e.cons1 = in.readLine();
+            e.cons2 = in.readLine();
+            e.cons3 = in.readLine();
+            in.readLine();
 
-        eventlist.append(e);
+            eventlist.append(e);
+        }
+        inputFile.close();
     }
-    eventFile.close();
-
     return eventlist;
 }

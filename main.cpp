@@ -1,26 +1,21 @@
-/***********************************
- *
- * @Authors
- *  Maciej Szymkiewicz
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- ***********************************/
+/*
+ ***********************************
+ *                                 *
+ * @Authors:                       *
+ *  Beniamin Szawracki             *
+ *  Maciej Szymkiewicz             *
+ *  Natan Świątkowski              *
+ *                                 *
+ *                                 *
+ *                                 *
+ *                                 *
+ *                                 *
+ ***********************************
+*/
 
 #include <QCoreApplication>
 #include "game.h"
-#include "interface.h"
+#include "hero.h"
 
 int main()
 {

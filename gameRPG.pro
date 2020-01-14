@@ -2,6 +2,7 @@ QT -= gui
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
+win32: LIBS += -luser32
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -15,11 +16,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    armor.cpp \
+    item.cpp \
         main.cpp \
     game.cpp \
-    interface.cpp \
     hero.cpp \
-    event.cpp
+    event.cpp \
+    utility.cpp \
+    weapon.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -27,7 +31,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    armor.h \
     game.h \
-    interface.h \
     hero.h \
-    event.h
+    event.h \
+    item.h \
+    utility.h \
+    weapon.h
