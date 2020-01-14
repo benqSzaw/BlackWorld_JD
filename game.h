@@ -22,12 +22,16 @@ private:
 public:
     Game();
     void start();
-    void exit();
     void save();
     void load();
     void run();
+    void quit();
+    void settings();
+    void changeScreenResolution(int choosenResolution);
+    void changeFontScale(int choosenFontScale);
     Hero* heroSetup();
     QList<Event> readEvents();
+
 
 };
 

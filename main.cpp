@@ -4,6 +4,18 @@
  *  Maciej Szymkiewicz
  *
  *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  ***********************************/
 
 #include <QCoreApplication>
@@ -14,4 +26,7 @@ int main()
 {
     Game game;
     game.start();
+
+
 }
+
