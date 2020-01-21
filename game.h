@@ -48,6 +48,7 @@ public:
     void options();
     void exitProgramm();
     void bottomText();
+    void startLogo();
 
     void inGameMenu();
     void changeScreenResolution(char choosenResolution);
