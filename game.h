@@ -49,9 +49,9 @@ public:
     void exitProgramm();
     void bottomText();
 
-    void settings();
-    void changeScreenResolution(int choosenResolution);
-    void changeFontScale(int choosenFontScale);
+    void inGameMenu();
+    void changeScreenResolution(char choosenResolution);
+    void changeFontScale(char choosenFontScale);
     Hero* heroSetup();
     QList<Event> readEvents();
     void showEvent(Event event);
