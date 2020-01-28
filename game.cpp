@@ -126,11 +126,9 @@ Game::Game() : isStarted(false)
 
 }
 
-void Game::whenHeraDead()
+void Game::whenHeraDead() //TODO: Beniamin pomyslec nad koncecja...
 {
-    isHeroDead = (mainHero->hp > 0);
-
-    if(isHeroDead == 0)
+    if(mainHero->hp <= 0 || mainHero->food <= 0)
     {
         system("cls");
         cout << " YOU DIED";
@@ -158,8 +156,8 @@ void Game::whenHeraDead()
         }
         case '3' :
         {
-            exitProgramm();
-            break;
+            system("cls");
+            exit (EXIT_FAILURE);
         }
         default :
         {
@@ -214,7 +212,6 @@ void Game::showStats()
     }
     }
 }
-
 
 void Game::exitProgramm()
 {
@@ -296,8 +293,6 @@ void Game::load()
     }
 }
 
-
-
 void Game::run()
 {
     QList<Event> eventList = readEvents();
@@ -312,6 +307,21 @@ void Game::run()
     {
         system("cls");
         Event currentEvent = eventList.at(currentEventId);
+        if(currentEvent.type == 2)
+        {
+            cout << currentEvent.description.toStdString() << endl;
+            cout << "Press any key to return to main menu";
+            _getch();
+            start();
+
+        }
+        else if (currentEvent.type == 3)
+        {
+            cout << currentEvent.description.toStdString() << endl;
+            cout << "Press any key to return to main menu";
+            _getch();
+            start();
+        }
         showEvent(currentEvent);
         bottomText();
         whenHeraDead();
@@ -594,13 +604,13 @@ void Game::changeScreenResolution(char choosenResolution)
     {
     case '1':
     {
-        MoveWindow(console, r.left, r.top, 800, 600, TRUE);
+        MoveWindow(console, r.left, r.top,640,480, TRUE);
         break;
     }
 
     case '2':
     {
-        MoveWindow (console,r.left,r.top,1280,720,TRUE);
+        MoveWindow (console,r.left,r.top,800,600,TRUE);
         break;
     }
     case '3':
@@ -616,18 +626,18 @@ void Game::changeScreenResolution(char choosenResolution)
     }
     case '5':
     {
-        MoveWindow (console,r.left,r.top,1366,768,TRUE);
+        MoveWindow (console,r.left,r.top,1280,720,TRUE);
         break;
     }
     case '6':
     {
 
-        MoveWindow (console,r.left,r.top,1400,800,TRUE);
+        MoveWindow (console,r.left,r.top,1366,768,TRUE);
         break;
     }
     case '7':
     {
-        MoveWindow (console,r.left,r.top,1920,1080,TRUE);
+        MoveWindow (console,r.left,r.top,1400,800,TRUE);
         break;
     }
     case '8':
@@ -637,12 +647,12 @@ void Game::changeScreenResolution(char choosenResolution)
     }
     case '9':
     {
-        MoveWindow (console,r.left,r.top,800,500,TRUE);
+        MoveWindow (console,r.left,r.top,1920,1080,TRUE);
         break;
     }
     case '0':
     {
-        MoveWindow (console,r.left,r.top,640,480,TRUE);
+        MoveWindow (console,r.left,r.top,1920,1440,TRUE);
         break;
     }
     default:
