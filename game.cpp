@@ -126,7 +126,7 @@ Game::Game() : isStarted(false)
 
 }
 
-void Game::whenHeraDead()
+void Game::whenHeraDead() //TODO: Beniamin pomyslec nad koncecja...
 {
     isHeroDead = (mainHero->hp > 0);
 
@@ -215,7 +215,6 @@ void Game::showStats()
     }
 }
 
-
 void Game::exitProgramm()
 {
     system("cls");
@@ -295,8 +294,6 @@ void Game::load()
         inputFile.close();
     }
 }
-
-
 
 void Game::run()
 {

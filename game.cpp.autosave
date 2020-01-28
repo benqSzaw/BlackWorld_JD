@@ -721,17 +721,21 @@ QList<Event> Game::readEvents()
         QTextStream in(&inputFile);
         while (!in.atEnd())
         {
+            
             Event e;
-
+            
             e.id = in.readLine().toInt();
             e.type = in.readLine().toInt();
             e.description = in.readLine();
-            e.option1 = in.readLine();
-            e.option2 = in.readLine();
-            e.option3 = in.readLine();
-            e.cons1 = in.readLine();
-            e.cons2 = in.readLine();
-            e.cons3 = in.readLine();
+            if (e.type==1)
+            {
+                e.option1 = in.readLine();
+                e.option2 = in.readLine();
+                e.option3 = in.readLine();
+                e.cons1 = in.readLine();
+                e.cons2 = in.readLine();
+                e.cons3 = in.readLine();  
+            }
             in.readLine();
 
             eventlist.append(e);
