@@ -1,0 +1,287 @@
+1
+1
+Jestes poszukiwaczem przygod. Jestes w drodze do najwiekszego miasta w tym regionie - Dwyntehu. Doszly cie sluchy, ze nie dzieje sie w tym miescie najlepiej. Wbrew pozorom to dobra wiadomosc dla ciebie. Z pewnoscia dla kogos takiego jak ty nie zabraknie tam zlecen. Posiadasz podstawowy ekwipunek wojownika. Idziesz pieszo, gdyz nie stac cie bylo na konia. Na osla zreszta tez. Jest wieczor. Szedles caly dzien. Co robisz?
+Rozkladasz oboz i idziesz spac.
+Probujesz cos upolowac.
+Nie zwazasz na zmeczenie. Idziesz dalej cala noc.
+food:-20;nextE:2
+food:-20;nextE:3
+stamina:-20;food:-20;nextE:12
+
+2
+1
+Budzisz sie rano. Wyruszasz w dalsza wedrowke. Dwynteh juz nie daleko... Wkrotce dochodzisz do glownej bramy. Gdy probujesz przez nia przejsc, straznik cie zatrzymuje i pyta o twoj cel podrozy.
+"Szukam zlecen. Podobno wiele sie dzieje w miescie"
+"Jestem kupcem. Bede sprzedawal swoje towary"
+"Przyszedlem skopac ci dupsko!"
+nextE:13
+nextE:14
+nextE:15
+
+3
+1
+Po niedlugich poszukiwaniach zauwazyles jelenia. Posiadasz prowizoryczny luk i strzaly.
+Podchodzisz blizej.
+Strzelasz do jelenia.
+Nie masz serca aby zabic niewinnego jelontka. Rezygnujesz z polowania i probujesz poszukac jakich jagod.
+nextE:4
+nextE:9
+nextE:7
+
+4
+1
+Podszedles do jelenia blizej. Nie sploszyl sie.
+Strzelasz do jelenia.
+Podchodzisz blizej.
+Nie masz serca aby zabic niewinnego jelontka. Rezygnujesz z polowania i probujesz poszukac jakis jagod.
+nextE:5
+nextE:6
+nextE:7
+
+5
+1
+Jednym celnym strzalem powalasz zwierze.
+Rozkladasz oboz i przyrzadzasz mieso, ktore nastepnie zjadasz.
+Zjadasz surowe mieso na miejscu.
+Stwierdzasz jednak, ze nie masz ochoty na dziczyzne. Zostawiasz jelenia tak jak lezy.
+food:+20;nextE:11
+food:+15;nextE:11
+nextE:11
+
+6
+1
+Niestety podszedles za blisko. Jelen sie sploszyl.
+Probujesz poszukac jakis jagod.
+Rozkladasz oboz i idziesz spac na glodniaka.
+Probujesz dalej cos upolowac. Byc moze chociaz jakis krolik sie trafi.
+nextE: 7
+nextE:2
+stamina:-5;nextE:10
+
+7
+1
+Znajdujesz czarne i czerwone jagody. Przypominasz sobie, ze jedne z nich byly smiertelnie trujace. Niestety nie potrafisz sobie przypomniec, ktore to byly.
+Zjadasz Czerwone.
+Zjadasz Czarne.
+Nie chcesz ryzykowac, nie zjadasz zadnych.
+hp:-9999;nextE:99
+food:+10;nextE:8
+nextE:8
+
+8
+1
+Jest juz bardzo pozno. Niedlugo nastanie noc.
+Rozkladasz na szybko prowizoryczny oboz i idziesz spac.
+Kladziesz sie spac po jakims drzewem.
+Stwierdzasz, ze nie oplaca sie juz isc spac. Kontynuujesz podroz do Dwynteh przez cala noc.
+nextE:2
+nextE:2
+stamina:-20;nextE:12
+
+9
+1
+Niestety chybiasz, a jelen ucieka.
+Probujesz poszukac jakis jagod.
+Rezygnujesz z polowania i rozkladasz oboz, a nastepnie idziesz spac na glodniaka.
+Probujesz dalej cos upolowac. Byc moze chociaz jakis krolik sie trafi.
+nextE:7
+nextE:2
+stamina:-5;nextE:10
+
+10
+1
+Tego wieczoru nic nie upolowales. Robi sie juz ciemno i dalsze polowanie nie ma sensu.
+Rozkladasz prowizoryczny oboz i idziesz spac na glodniaka.
+Kladziesz sie spac po prostu pod jakims najblizszym drzewem.
+Stwierdzasz, ze nie oplaca sie juz isc spac. Kontynuujesz podroz do Dwynteh przez cala noc.
+nextE:2
+nextE:2
+stamina:-20;nextE:12
+
+11
+1
+Nie pozostaje ci nic innego jak pojsc w kime. Jednak przed snem mozesz cos jeszcze zrobic.
+Po prostu idziesz spac.
+Przed snem oczyszczasz rynsztunek.
+Patrzysz w gwiazdy.
+nextE:2
+nextE:2
+nextE:2
+
+12
+1
+Slonce juz wzeszlo. Jestes na nogach od prawie 24 godzin. Czujesz zmeczenie, ale miales ciezsze wedrowki w swoim zyciu. Jestes przed glowna brama miasta, kiedy zatrzymuje cie straznik i pyta o twoj cel przybycia do miasta.
+"Szukam zlecen. Podobno wiele sie dzieje w miescie"
+"Jestem kupcem. Bede sprzedawal swoje towary"
+"Przyszedlem skopac ci dupsko!"
+nextE:13
+nextE:14
+nextE:15
+
+13
+1
+"Hmm... kolejny poszukiwacz przygod. W takim razie zapraszam do miasta" - odrzekl straznik. Przechodzisz przez brame.
+Udajesz sie do najblizszej karczmy.
+Udajesz sie gildii po zlecenie.
+Od razu wbijasz do kanalow - w koncu to gra rpg a nie jakies simsy.
+nextE:38
+nextE:30
+nextE:33
+
+14
+1
+"Taa? To je pokaz, bo nie widze, zebys mial cos ciekawego, oszuscie!"
+Wyciagasz miec i staczasz walke ze straznikiem.
+Mowisz, ze to tylko zart i probujesz go uspokoic.
+Uciekasz.
+nextE:18
+nextE:17
+nextE:16
+
+15
+1
+"Ta zniewaga krwi wymaga" - krzyknal. Wyciagnal bardzo sprawnie miecz i zaatakowal szybkim cieciem.
+Robisz unik.
+Blokujesz atak wlasnym mieczem.
+Wcale sie nie obronisz, ale robisz szybki atak mieczem w zebra.
+nextE:27
+nextE:28
+nextE:29
+
+16
+2
+Robisz szybkie odwrot i zwiewasz gdzie pieprze rosnie. Robisz to bardzo szybko, jakbys robil to juz wiele razy w zyciu. Straznik zdazyl jedynie krzyknac - "stoj". Wydawalo sie, ze twoja ucieczka zakonczy sie powodzeniem, gdy nagle przebija cie belt wystrzelony z kuszy. Straznik murow widzial cala akcje i na twoje nieszczescie nie chybil... po krotkiej chwili juz nie zyles.
+
+17
+1
+Straznik daruje ci tym razem. Jednak nie do miasta cie nie wpuscil.
+Probujesz wedrzec sie sila. Atakujesz straznika.
+Probujesz przekupic straznika.
+Wracasz skad przyszedles.
+nextE:18
+nextE:25
+nextE:26
+
+18
+1
+Nastepuje wymiana atakow, blokow i unikow, w wynikow, ktorych zostajesz powaznie ranny w noge. Widzisz, ze przybiegaja posilki.
+Krzyczysz: "Za honor i chwale" i walczysz do samego konca.
+Poddajesz sie.
+Probujesz uciekac.
+nextE:19
+nextE:20
+nextE:24
+
+19
+2
+Twoja walka nie trwala dlugo... Tu konczy sie twoja przygoda.
+
+20
+1
+Zostajesz pojmany i wtracony do lochu. Dowiadujesz sie, ze w tym miescie za podniesienie reki na straznika jest kara smierci. Wyrok zostanie wykonany za 3 dni.
+Nic nie robisz i czekasz na wyrok.
+Probujesz otworzyc zamek za pomoca kawalka metalu, ktory akurat lezal w twojej celi.
+Przez 3 dni probujesz wezwac demona zaglady, aby w zamian za twoje uslugi, uwolnil cie z tego wiezienia.
+nextE:21
+nextE:22
+nextE:23
+
+21
+2
+Egzekucja przebiegla sprawnie.
+
+22
+2
+Probowales na wszystkie sposoby, jednak nie udalo ci sie otworzyc zamka, ale przynajmniej probowales. Egzekucja przebiegla sprawnie.
+
+23
+2
+Naogladales sie za duzo bajek. To nie dziala w ten sposob. Przynajmniej miales jakis plan. Egzekucja przebiegla sprawnie.
+
+24
+2
+Probowales z calych sil biec, ale rana w nodze byla zbyt powazna. Straznicy nie okazali ci litosci. Zabili cie na miejscu.
+
+25
+1
+Straznik wzial lapowke i wpuscil cie do miasta.
+Udajesz sie gildii po zlecenie.
+Udajesz sie do najblizszej karczmy.
+Od razu wbijasz do kanalow - w koncu to gra rpg a nie jakies simsy
+nextE:30
+nextE:38
+nextE:33
+
+26
+2
+W drodze powrotnej napadli cie zboje. Bylo ich zbyt wielu, nie miales szans...
+
+27
+2
+Okazales sie zbyt wolny. Jedno celne trafienie konczy twoja przygode.
+
+28
+2
+Twoj blok wolal o pomste do nieba. Nie zablokowal prostego uderzenia. Jedno celne uderzenie zakonczylo twoja przygode. Raczej nikt juz o tobie nie wspomni.
+
+29
+2
+Przebiles straznika mieczem, chociaz przyplaciles to swoim zyciem, bo straznik zrobil dokladnie tak samo. Coz, przynajmniej nie wywaliles sie za 0.
+
+30
+1
+Ludzie znikaja z miasta. Nie pozostaja po nich zadne slady. Choc, niektorzy sie upieraja, ze widzieli jak cos zaciaga ciala do kanalow. Jezeli wyjasnisz sprawe otrzymasz 150 golda.
+Wypytujesz przechodniow. Moze wiedza cos wiecej.
+Wchodzisz do kanalow.
+Stwierdzasz, ze walisz to wszystko i wyjezdzasz w Bieszczady.
+nextE:31
+nextE:33
+nextE:32
+
+31
+2
+Wypytywales przechodniow caly dzien, ale niczego sie nie dowiedziales. Co gorsza zaraziles sie od jednego koronawirusem. Wkrotce umarles...
+
+32
+3
+Wyjechales w Bieszczady i zyles dlugo, i szczesliwie. To byla dobra decyzja.
+
+33
+1
+Wszedles do kanalow. Widzisz wielkiego szczura.
+Atakujesz go.
+Mowisz: "Nope" i wchodzisz w inny korytarz.
+Zapalasz pochodnie. Szczury w koncu boja sie ognia.
+nextE:37
+nextE:34
+nextE:35
+
+34
+1
+W tym drugim korytarzu wielkich szczurow jest jeszcze wiecej. Cos okolo calego stada.
+Mowisz: "Nope" 3 razy i wyjezdzasz w bieszczady.
+Atakujesz je wszystkie liczac na cud.
+Zapalasz pochodnie. Szczury w koncu boja sie ognia.
+nextE:32
+nextE:36
+nextE:35
+
+35
+2
+Gdy poszla pierwsza iskra ciebie juz nie bylo. W kanalach ulatnial sie metan, ktory wybuchl. Przynajmniej zabiles tym troche szczurow.
+
+36
+2
+Cud jednak sie nie wydarzyl. Szczury cie nie oszczedzaly. Umarles szybko.
+
+37
+2
+Staczasz zacieta walke, w ktorej smierc ponosi szczur. Jednak twoje rany w wyniku walki sa zbyt powazne. Czekales na pomoc, ale nikt sie nie zjawil... tylko inne szczury, ktore dokonczyly dziela.
+
+38
+2
+W karczmie, w ktorej piles piwo i jadles wywiazala sie bojka. Ochoczo wziales w niej udzial, ale jej wynik okazal sie dla ciebie niekorzystny... bardzo niekorzystny. Glupio, ze konczysz w taki sposob... z noga od krzesla w glowie. Moze gdybys wypil jedno piwo mniej, zdazylbys tego uniknac... kto wie, kto wie.
+
+99
+2
+Umarles...

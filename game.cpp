@@ -80,7 +80,7 @@ void Game::executeEvent(QString cons)
         QString value = list2.at(1);
         if(attr == "nextE")
         {
-            currentEventId = value.toInt() -1;
+            currentEventId = value.toInt() - 1;
         }
         else
         {
@@ -332,21 +332,21 @@ void Game::run()
         {
             //TO DO: Showing 1st consequence
             executeEvent(currentEvent.cons1);
-            currentEventId++;
+            //currentEventId++;
             break;
         }
         case '2':
         {
             //TO DO: Showing 2nd consequence
             executeEvent(currentEvent.cons2);
-            currentEventId++;
+            //currentEventId++;
             break;
         }
         case '3':
         {
             //TO DO: Showing 3rd consequence
             executeEvent(currentEvent.cons3);
-            currentEventId++;
+            //currentEventId++;
             break;
         }
         case 'E':
@@ -739,12 +739,24 @@ QList<Event> Game::readEvents()
             e.id = in.readLine().toInt();
             e.type = in.readLine().toInt();
             e.description = in.readLine();
-            e.option1 = in.readLine();
-            e.option2 = in.readLine();
-            e.option3 = in.readLine();
-            e.cons1 = in.readLine();
-            e.cons2 = in.readLine();
-            e.cons3 = in.readLine();
+            if (e.type == 1)
+            {
+                e.option1 = in.readLine();
+                e.option2 = in.readLine();
+                e.option3 = in.readLine();
+                e.cons1 = in.readLine();
+                e.cons2 = in.readLine();
+                e.cons3 = in.readLine();
+            }
+            else
+            {
+                e.option1 = "";
+                e.option2 = "";
+                e.option3 = "";
+                e.cons1 = "";
+                e.cons2 = "";
+                e.cons3 = "";
+            }
             in.readLine();
 
             eventlist.append(e);
